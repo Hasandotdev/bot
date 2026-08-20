@@ -1,0 +1,23 @@
+{
+  "name": "prismatic-chat-agent",
+  "version": "1.0.0",
+  "description": "AI Chat Agent for prismatic-technologies.com",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "groq-sdk": "^0.8.0",
+    "nodemailer": "^9.0.5"
+  },
+  "devDependencies": {
+    "prisma": "^6.19.3"
+  }
+}

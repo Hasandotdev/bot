@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Chatbot — Admin</title>
+<link rel="stylesheet" href="admin.css?v=3">
+</head>
+<body>
+<nav>
+  <h1>Lead Chatbot Admin</h1>
+  <div id="auth-area">
+    <div id="tenant-control" class="tenant-control">
+      <span id="tenant-label" class="tenant-label"></span>
+      <select id="tenant-switcher" class="input tenant-switcher" style="display:none" title="Switch client"></select>
+    </div>
+    <div id="nav-profile">
+      <div id="nav-avatar"></div>
+      <span id="nav-profile-name"></span>
+      <span id="nav-role" class="role-badge"></span>
+    </div>
+    <button id="btn-theme" title="Toggle dark mode">🌙</button>
+    <button id="btn-logout" class="btn-secondary" style="display:none">Logout</button>
+  </div>
+</nav>
+
+<div class="container">
+  <aside>
+    <button class="tab" data-tab="clients" id="tab-clients-btn" style="display:none">Clients</button>
+    <button class="tab tenant-tab active" data-tab="contacts">Contacts</button>
+    <button class="tab tenant-tab" data-tab="knowledge">Knowledge Base</button>
+    <button class="tab tenant-tab" data-tab="scraper">Scraper</button>
+    <button class="tab tenant-tab" data-tab="products">Products / Pricing</button>
+    <button class="tab tenant-tab" data-tab="services">Sales Flow</button>
+    <button class="tab tenant-tab" data-tab="packages">Service Packages</button>
+    <button class="tab tenant-tab" data-tab="widget">Widget</button>
+    <button class="tab tenant-tab" data-tab="chatlogs">Chat Logs</button>
+    <button class="tab tenant-tab" data-tab="settings">Settings</button>
+  </aside>
+
+  <main>
+    <!-- Clients -->
+    <section id="tab-clients" class="tab-content">
+      <div class="section-header">
+        <div>
+          <h2>Clients</h2>
+          <p class="section-note">Usage summary per client (this month = current calendar month).</p>
+        </div>
+        <button class="btn-primary" onclick="openClientForm()">+ Add Client</button>
+      </div>
+      <div class="table-wrap">
+        <table id="clients-table">
+          <thead><tr><th>Client ID</th><th>Name</th><th>Company</th><th>Username</th><th>Total Chats</th><th>Chats This Month</th><th>Msgs This Month</th><th>Contacts</th><th>Created</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Contacts -->
+    <section id="tab-contacts" class="tab-content active">
+      <div class="section-header">
+        <h2>Stack-to-Contact Mapping</h2>
+        <button class="btn-primary" onclick="openContactForm()">+ Add Contact</button>
+      </div>
+      <div class="table-wrap">
+        <table id="contacts-table">
+          <thead><tr><th>Stack</th><th>Name</th><th>Email</th><th>Phone</th><th>Keywords</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Knowledge Base -->
+    <section id="tab-knowledge" class="tab-content">
+      <div class="section-header">
+        <h2>Knowledge Base Entries</h2>
+        <button class="btn-primary" onclick="openKbForm()">+ Add Entry</button>
+      </div>
+      <div class="table-wrap">
+        <table id="knowledge-table">
+          <thead><tr><th>Label</th><th>Topic</th><th>Content</th><th>Stack</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Products / Pricing -->
+    <section id="tab-products" class="tab-content">
+      <div class="section-header">
+        <h2>Products &amp; Pricing</h2>
+        <button class="btn-primary" onclick="openProductForm()">+ Add Product</button>
+      </div>
+      <div class="table-wrap">
+        <table id="products-table">
+          <thead><tr><th>Name</th><th>Stack</th><th>Category</th><th>Price Range</th><th>Description</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Services / Sales Flow -->
+    <section id="tab-services" class="tab-content">
+      <div class="section-header">
+        <h2>Sales Flow</h2>
+               <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn-primary" onclick="openServiceForm()">+ Add Service</button>
+          <button class="btn-secondary" id="btn-generate-services" onclick="triggerGenerateServices()">Generate from Knowledge Base</button>
+        </div>
+        <div id="generate-services-result" class="card" style="display:none"></div>
+      </div>
+      <div class="table-wrap">
+        <table id="services-table">
+          <thead><tr><th>Service</th><th>Description</th><th>Qualifying Qs</th><th>Features</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Service Packages -->
+    <section id="tab-packages" class="tab-content">
+      <div class="section-header">
+        <h2>Service Packages</h2>
+        <button class="btn-primary" onclick="openPackageForm()">+ Add Service Package</button>
+      </div>
+      <div class="table-wrap">
+        <table id="packages-table">
+          <thead><tr><th>Service</th><th>Basic</th><th>Standard</th><th>Premium</th><th></th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Scraper -->
+    <section id="tab-scraper" class="tab-content">
+      <div class="section-header">
+        <div>
+          <h2>Website Scraper</h2>
+          <p class="section-note">Scrape a website to auto-populate the knowledge base, services and contact details.</p>
+        </div>
+      </div>
+      <div class="form-row">
+        <input type="text" id="scrape-url" value="https://prismatic-technologies.com" class="input" style="flex:1">
+        <button id="btn-scrape" class="btn-primary" onclick="triggerScrape()">Scrape</button>
+      </div>
+      <div id="scrape-result" class="card" style="display:none"></div>
+    </section>
+
+    <!-- Widget -->
+    <section id="tab-widget" class="tab-content">
+      <div class="section-header">
+        <div>
+          <h2>Chat Widget</h2>
+          <p class="section-note">Copy this code and paste it just before <code>&lt;/body&gt;</code> on your website to enable the chatbot.</p>
+        </div>
+      </div>
+      <div class="card">
+        <label style="display:block;margin-bottom:8px;font-weight:600">Your Tenant ID</label>
+        <code id="widget-tenant-id" style="font-size:14px"></code>
+      </div>
+      <div class="card">
+        <label style="display:block;margin-bottom:8px;font-weight:600">Embed Code</label>
+        <textarea id="widget-embed-code" class="input code-input" rows="8" readonly></textarea>
+        <div class="form-row end" style="margin-top:12px">
+          <button class="btn-primary" onclick="copyWidgetCode()">Copy Code</button>
+        </div>
+      </div>
+      <p class="section-note">Your provider can also map your website domain so the widget auto-detects your chatbot — then you can remove the <code>PRISMATIC_TENANT_ID</code> line and just load <code>widget.js</code>.</p>
+    </section>
+
+    <!-- Chat Logs -->
+    <section id="tab-chatlogs" class="tab-content">
+      <div id="chatlog-list">
+        <div class="section-header">
+          <h2>Chat Logs</h2>
+          <button class="btn-secondary" onclick="loadChatLogs()">Refresh</button>
+        </div>
+        <p class="section-note">Every widget conversation is saved client-wise so you can review it even if the visitor used a fake email.</p>
+        <div class="table-wrap">
+          <table id="chatlogs-table">
+            <thead><tr><th>Client</th><th>Name</th><th>Email</th><th>Phone</th><th>Messages</th><th>Last Active</th><th>Preview</th><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div id="chatlog-detail" style="display:none">
+        <div class="section-header">
+          <button class="btn-secondary" onclick="backToChatLogs()">← Back to Chat Logs</button>
+          <h2 id="chatlog-detail-title" style="flex:1;text-align:right"></h2>
+        </div>
+        <div id="chatlog-messages" class="chatlog-messages"></div>
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section id="tab-settings" class="tab-content">
+      <div class="section-header">
+        <h2>Settings</h2>
+      </div>
+      <div class="settings-card">
+        <h3>Appearance</h3>
+        <div class="form-row">
+          <label style="flex:1;margin:0">
+            Theme
+            <select id="settings-theme" class="input">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="settings-card">
+        <h3>Email Notifications</h3>
+        <p class="form-note">Send an email to yourself whenever a visitor has a chat conversation, including their details and the full transcript.</p>
+        <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--text-muted);margin-bottom:14px">
+          <input type="checkbox" id="settings-email-notify" style="width:auto">
+          Enable email notifications
+        </label>
+        <label>Recipient Email <input id="settings-email" class="input" type="email" placeholder="e.g. info@prismatic-technologies.com"></label>
+        <p class="form-note">SMTP is configured in <code>backend/.env</code> (SMTP_HOST, SMTP_USER, SMTP_PASS).</p>
+        <div class="form-row end">
+          <button type="button" class="btn-secondary" id="btn-test-email" onclick="sendTestEmail()">Send Test Email</button>
+        </div>
+      </div>
+      <div class="settings-card">
+        <h3>Company Info (shown to visitors)</h3>
+        <p class="form-note">Used by the chat widget header, contact card and the AI assistant.</p>
+        <label>Company Name <input id="settings-company" class="input" placeholder="e.g. Lead Chatbot"></label>
+        <label>Phone <input id="settings-phone" class="input" placeholder="e.g. +92 307 8881432"></label>
+        <label>Locations <input id="settings-locations" class="input" placeholder="e.g. Pakistan, Saudi Arabia, USA"></label>
+        <div class="form-row">
+          <label style="flex:1;margin:0">
+            Widget Accent Color
+            <input type="color" id="settings-color" class="input" value="#2563eb" style="padding:4px;height:40px">
+          </label>
+          <label style="flex:1;margin:0">
+            Widget Logo
+            <input type="file" id="settings-logo-file" class="input" accept="image/*" style="padding:6px" onchange="onLogoFile(this)">
+          </label>
+        </div>
+        <div id="settings-logo-preview" class="avatar-preview" style="display:none"></div>
+        <button type="button" class="btn-secondary btn-small" id="btn-remove-logo" style="display:none" onclick="removeLogo()">Remove Logo</button>
+      </div>
+      <div class="settings-card">
+        <h3>Admin Profile</h3>
+        <form id="settings-form" onsubmit="saveSettings(event)" novalidate>
+          <div id="settings-avatar-preview" class="avatar-preview"></div>
+          <div class="form-row">
+            <input type="file" id="settings-avatar-file" class="input" accept="image/*" style="padding:6px" onchange="onAvatarFile(this)">
+            <button type="button" class="btn-secondary" onclick="removeAvatar()">Remove</button>
+          </div>
+          <label>Name <input id="settings-name" class="input" placeholder="Admin"></label>
+          <label>Username <input id="settings-username" class="input" placeholder="admin"></label>
+          <label>New Password <input id="settings-password" class="input" type="password" placeholder="Leave blank to keep current"></label>
+          <label>Confirm Password <input id="settings-confirm" class="input" type="password" placeholder="Repeat new password"></label>
+          <div class="form-row" style="justify-content:flex-end">
+            <button type="submit" class="btn-primary">Save Settings</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Client Modal -->
+<div id="client-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('client-modal')">&times;</span>
+    <h3 id="client-modal-title">Add Client</h3>
+    <form id="client-form" onsubmit="saveClient(event)" novalidate>
+      <input type="hidden" id="client-id">
+      <label>Client Name <input id="client-name" class="input" required placeholder="e.g. Acme Corp"></label>
+      <label>Company Name (shown to visitors) <input id="client-company" class="input" placeholder="e.g. Acme Corp Ltd"></label>
+      <label>Login Username <input id="client-username" class="input" required></label>
+      <label>Login Password <input id="client-password" class="input" type="password" placeholder="Leave blank to keep current"></label>
+      <label>Notification Email <input id="client-email" class="input" type="email" placeholder="chat transcripts go here"></label>
+      <label>Phone (shown to visitors) <input id="client-phone" class="input" placeholder="e.g. +1 555 000 1234"></label>
+      <label>Domains (comma-separated, for widget auto-detection) <input id="client-domains" class="input" placeholder="e.g. acme.com, app.acme.com"></label>
+      <p class="form-note">Share the admin URL and login with the client — they manage their own knowledge base, packages and settings.</p>
+      <button type="submit" class="btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+
+<!-- Contact Modal -->
+<div id="contact-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('contact-modal')">&times;</span>
+    <h3 id="contact-modal-title">Add Contact</h3>
+    <form id="contact-form" onsubmit="saveContact(event)" novalidate>
+      <input type="hidden" id="contact-id">
+      <label>Stack Name <input id="contact-stack" class="input" required></label>
+      <label>Contact Name <input id="contact-name" class="input"></label>
+      <label>Email <input id="contact-email" class="input" type="email"></label>
+      <label>Phone <input id="contact-phone" class="input"></label>
+      <label>Keywords (comma-separated) <input id="contact-keywords" class="input" placeholder="react, web, frontend"></label>
+      <button type="submit" class="btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+
+<!-- Knowledge Modal -->
+<div id="kb-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('kb-modal')">&times;</span>
+    <h3 id="kb-modal-title">Add Knowledge Entry</h3>
+    <form id="kb-form" onsubmit="saveKb(event)" novalidate>
+      <input type="hidden" id="kb-id">
+      <label>Label <input id="kb-label" class="input" required></label>
+      <label>Topic <input id="kb-topic" class="input" placeholder="general, services, pricing, contact"></label>
+      <label>Content <textarea id="kb-content" class="input" rows="4" required></textarea></label>
+      <label>Linked Stack <input id="kb-stack" class="input" placeholder="e.g. React / Web"></label>
+      <button type="submit" class="btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+
+<!-- Product Modal -->
+<div id="product-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('product-modal')">&times;</span>
+    <h3 id="product-modal-title">Add Product</h3>
+    <form id="product-form" onsubmit="saveProduct(event)" novalidate>
+      <input type="hidden" id="product-id">
+      <label>Product Name <input id="product-name" class="input" required></label>
+      <label>Stack <input id="product-stack" class="input" placeholder="e.g. React / Web"></label>
+      <label>Category <select id="product-category" class="input">
+        <option value="development">Development</option>
+        <option value="infrastructure">Infrastructure</option>
+        <option value="consulting">Consulting</option>
+        <option value="support">Support</option>
+      </select></label>
+      <label>Price Range <input id="product-price" class="input" placeholder="e.g. $25k - $80k or Custom quote"></label>
+      <label>Description <textarea id="product-desc" class="input" rows="3"></textarea></label>
+      <button type="submit" class="btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+
+<!-- Package Modal -->
+<div id="package-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('package-modal')">&times;</span>
+    <h3 id="package-modal-title">Add Service Package</h3>
+    <form id="package-form" onsubmit="savePackage(event)" novalidate>
+      <input type="hidden" id="package-id">
+      <label>Service Name <input id="package-service" class="input" placeholder="e.g. Website Development" required></label>
+      <div class="pkg-section">
+        <h4>Basic</h4>
+        <label>Price <input id="pkg-basic-price" class="input" placeholder="e.g. PKR 150,000 - 250,000"></label>
+        <label>Features <textarea id="pkg-basic-features" class="input" rows="2" placeholder="e.g. 5 pages, responsive design, contact form"></textarea></label>
+      </div>
+      <div class="pkg-section">
+        <h4>Standard</h4>
+        <label>Price <input id="pkg-standard-price" class="input" placeholder="e.g. PKR 600,000+"></label>
+        <label>Features <textarea id="pkg-standard-features" class="input" rows="2" placeholder="e.g. Everything in Premium, custom integrations, dedicated support"></textarea></label>
+      </div>
+      <div class="pkg-section">
+        <h4>Premium</h4>
+        <label>Price <input id="pkg-premium-price" class="input" placeholder="e.g. PKR 300,000 - 500,000"></label>
+        <label>Features <textarea id="pkg-premium-features" class="input" rows="2" placeholder="e.g. Ecommerce, payment gateway, advanced SEO"></textarea></label>
+      </div>
+      <button type="submit" class="btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+
+<!-- Service Modal -->
+<div id="service-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('service-modal')">&times;</span>
+    <h3 id="service-modal-title">Add Service</h3>
+    <form id="service-form" onsubmit="saveService(event)" novalidate>
+      <input type="hidden" id="service-id">
+      <label>Service Name <input id="service-name" class="input" placeholder="e.g. Wedding Photography" required></label>
+      <label>Description <textarea id="service-desc" class="input" rows="2" placeholder="1-3 sentences describing what this service includes"></textarea></label>
+      <label>Qualifying Questions (one per line) <textarea id="service-qquestions" class="input" rows="4" placeholder="What's your event date?&#10;How many guests?&#10;What's your budget?"></textarea></label>
+      <label>Engagement Questions (one per line, optional) <textarea id="service-equestions" class="input" rows="3" placeholder="Do you also need a videographer?"></textarea></label>
+      <label>Features (one per line) <textarea id="service-features" class="input" rows="3" placeholder="8-hour coverage&#10;Edited digital gallery&#10;Second shooter"></textarea></label>
+      <button type="submit" class="btn-primary">Save</button>
+    </form>
+  </div>
+</div>
+
+<script src="admin.js?v=6"></script>
+</body>
+</html>

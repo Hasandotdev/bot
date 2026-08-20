@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Chatbot — Admin Login</title>
+<link rel="stylesheet" href="login.css?v=3">
+</head>
+<body>
+<button id="btn-theme" class="theme-toggle" title="Toggle dark mode">🌙</button>
+
+<div class="login-card">
+  <div class="login-brand">
+    <div class="brand-badge">L</div>
+    <h1>Lead Chatbot Admin</h1>
+    <p>Sign in to manage your chat agent</p>
+  </div>
+  <form id="login-form" novalidate>
+    <label for="login-user">Username</label>
+    <input id="login-user" class="input" type="text" placeholder="Enter your username" autocomplete="username" autofocus required>
+    <label for="login-pass">Password</label>
+    <div class="password-wrap">
+      <input id="login-pass" class="input" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+      <button type="button" id="btn-toggle-pass" class="pass-toggle" title="Show password" tabindex="-1">👁</button>
+    </div>
+    <div id="login-error" class="login-error" role="alert" hidden></div>
+    <button type="submit" id="btn-login" class="btn-primary">Sign In</button>
+  </form>
+</div>
+
+<script src="login.js?v=4"></script>
+</body>
+</html>

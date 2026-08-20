@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Chatbot — Test</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #1e293b; }
+  header {
+    background: linear-gradient(135deg, #1e293b, #2563eb);
+    color: #fff;
+    padding: 48px 24px;
+    text-align: center;
+  }
+  header h1 { font-size: 32px; margin-bottom: 8px; }
+  header p { font-size: 16px; opacity: 0.85; }
+  .container { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .card h2 { font-size: 18px; margin-bottom: 12px; }
+  .card ul { padding-left: 20px; }
+  .card li { margin-bottom: 6px; font-size: 14px; line-height: 1.5; }
+  .tag {
+    display: inline-block;
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 2px;
+  }
+  .note {
+    background: #fef3c7;
+    border: 1px solid #f19c09;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #863e11;
+    margin-top: 24px;
+  }
+  .note strong { color: #78350f; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Lead Chatbot</h1>
+  <p>Software Development Web, Mobile, AI, DevOps, ERP</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Our Services</h2>
+    <div>
+      <span class="tag">React web development</span>
+      <span class="tag">Flutter mobile app</span>
+      <span class="tag">AI chatbot development</span>
+      <span class="tag">DevOps consulting</span>
+      <span class="tag">ERP implementation</span>
+     
+      
+      
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>About Lead Chatbot</h2>
+    <p style="font-size:14px;line-height:1.6">
+      Lead Chatbot builds custom software solutions for businesses worldwide.
+      We specialize in full-stack web development, cross-platform mobile apps with Flutter,
+      AI/ML integration, DevOps infrastructure, and enterprise ERP systems.
+      Our team is distributed across the USA and Saudi Arabia.
+    </p>
+  </div>
+
+</div>
+
+<link rel="stylesheet" href="/widget/widget.css">
+<script>
+  // Preview any client's widget: /test?tenant=c-xxxxx (defaults to prismatic)
+  var tenant = new URLSearchParams(window.location.search).get('tenant');
+  if (tenant) {
+    window.PRISMATIC_TENANT_ID = tenant;
+  } else {
+    window.PRISMATIC_TENANT_ID = 'prismatic';
+    window.PRISMATIC_COMPANY = {
+      name: 'Lead Chatbot',
+      welcome: 'Lead Chatbot',
+      phone: '+92 307 8881432',
+      email: 'info@prismatic-technologies.com',
+      locations: 'Pakistan, Saudi Arabia, USA',
+    };
+  }
+</script>
+<script src="/widget/widget.js?v=2"></script>
+<script>
+  (function() {
+    var check = setInterval(function() {
+      var w = document.getElementById('prismatic-chat-widget');
+      if (w) { w.classList.add('open'); clearInterval(check); }
+    }, 50);
+    setTimeout(function() { clearInterval(check); }, 5000);
+  })();
+</script>
+
+</body>
+</html>

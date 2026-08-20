@@ -1,0 +1,373 @@
+:root {
+  --prismatic-primary: #2563eb;
+  --prismatic-primary-dark: #1d4ed8;
+}
+
+#prismatic-chat-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--prismatic-primary, #2563eb);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+  z-index: 99999;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+#prismatic-chat-btn:hover { transform: scale(1.08); }
+#prismatic-chat-btn svg { width: 28px; height: 28px; fill: currentColor; }
+
+#prismatic-chat-widget {
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  width: 380px;
+  max-width: calc(100vw - 48px);
+  height: 560px;
+  max-height: calc(100vh - 120px);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  z-index: 99998;
+  display: none;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow: hidden;
+}
+#prismatic-chat-widget.open { display: flex; }
+
+#prismatic-chat-header {
+  background: var(--prismatic-primary, #2563eb);
+  color: #fff;
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#prismatic-chat-header > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.prismatic-logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.25);
+  padding: 2px;
+  flex-shrink: 0;
+}
+#prismatic-chat-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.prismatic-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#prismatic-contact-toggle {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1.4;
+}
+#prismatic-contact-toggle:hover,
+#prismatic-contact-toggle.active {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+}
+#prismatic-clear-chat {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: 1.4;
+}
+#prismatic-clear-chat:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+}
+
+#prismatic-contact-card {
+  display: none;
+  background: #eff6ff;
+  border-bottom: 1px solid #dbeafe;
+  padding: 10px 16px;
+  flex-direction: column;
+  gap: 2px;
+}
+#prismatic-contact-card.open { display: flex; }
+.prismatic-contact-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+}
+.prismatic-contact-row {
+  font-size: 12px;
+  color: #334155;
+  text-decoration: none;
+  line-height: 1.5;
+}
+a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-decoration: underline; }
+
+#prismatic-lead-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 20px;
+  background: #f8fafc;
+}
+.prismatic-lead-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+}
+.prismatic-lead-sub {
+  font-size: 13px;
+  color: #64748b;
+  text-align: center;
+  margin: 0 0 6px;
+}
+#prismatic-lead-form input {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+  background: #fff;
+}
+#prismatic-lead-form input:focus { border-color: var(--prismatic-primary, #2563eb); }
+.prismatic-lead-error {
+  color: #dc2626;
+  font-size: 12px;
+  text-align: center;
+  min-height: 16px;
+}
+#prismatic-lead-start {
+  background: var(--prismatic-primary, #2563eb);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+#prismatic-lead-start:hover { background: var(--prismatic-primary-dark, #1d4ed8); }
+
+#prismatic-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8fafc;
+}
+.prismatic-msg {
+  max-width: 82%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+}
+.prismatic-msg.bot {
+  background: #e2e8f0;
+  color: #1e293b;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+.prismatic-msg.user {
+  background: var(--prismatic-primary, #2563eb);
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.prismatic-msg.handoff {
+  background: #dbeafe;
+  color: #1e40af;
+  align-self: flex-start;
+  border-left: 3px solid var(--prismatic-primary, #2563eb);
+  border-radius: 12px;
+  font-weight: 500;
+}
+.prismatic-msg.prismatic-msg-error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+.prismatic-retry-btn {
+  background: var(--prismatic-primary, #2563eb);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.prismatic-retry-btn:hover {
+  background: var(--prismatic-primary-dark, #1d4ed8);
+}
+
+#prismatic-chat-input-area {
+  display: none;
+  border-top: 1px solid #e2e8f0;
+  padding: 12px;
+  background: #fff;
+  gap: 8px;
+}
+#prismatic-chat-input {
+  flex: 1;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+}
+#prismatic-chat-input:focus { border-color: var(--prismatic-primary, #2563eb); }
+#prismatic-chat-send {
+  background: var(--prismatic-primary, #2563eb);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+}
+#prismatic-chat-send:hover { background: var(--prismatic-primary-dark, #1d4ed8); }
+#prismatic-chat-send:disabled { opacity: 0.5; cursor: default; }
+
+.prismatic-typing {
+  display: flex;
+  gap: 4px;
+  padding: 10px 14px;
+  background: #e2e8f0;
+  border-radius: 12px;
+  align-self: flex-start;
+}
+.prismatic-typing span {
+  width: 8px;
+  height: 8px;
+  background: #64748b;
+  border-radius: 50%;
+  animation: prismatic-bounce 1.2s infinite;
+}
+.prismatic-typing span:nth-child(2) { animation-delay: 0.2s; }
+.prismatic-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes prismatic-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+.prismatic-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 4px;
+  max-width: 100%;
+}
+.prismatic-option-btn {
+  background: #fff;
+  border: 1.5px solid var(--prismatic-primary, #2563eb);
+  color: var(--prismatic-primary, #2563eb);
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.prismatic-option-btn:hover {
+  background: var(--prismatic-primary, #2563eb);
+  color: #fff;
+}
+.prismatic-option-btn.selected {
+  background: var(--prismatic-primary, #2563eb);
+  color: #fff;
+  border-color: var(--prismatic-primary, #2563eb);
+}
+.prismatic-option-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+  background: #e2e8f0;
+  border-color: #94a3b8;
+  color: #94a3b8;
+}
+.prismatic-option-btn.selected:disabled {
+  background: var(--prismatic-primary-dark, #1d4ed8);
+  opacity: 0.5;
+  color: #fff;
+  border-color: var(--prismatic-primary-dark, #1d4ed8);
+}
+.prismatic-option-done {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  width: 100%;
+  margin-top: 6px;
+}
+.prismatic-option-done:hover {
+  background: #15803d;
+}
+.prismatic-option-done:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+

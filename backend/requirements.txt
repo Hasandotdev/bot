@@ -1,0 +1,43 @@
+# Deployment requirements for Lead Chatbot (Node.js backend)
+
+# --- System requirements ---
+Node.js >= 18
+npm >= 9
+pm2 (process manager, optional but recommended)
+
+# --- npm dependencies (installed via `npm install --omit=dev`) ---
+axios>=1.7.7
+cheerio>=1.0.0
+cors>=2.8.5
+dotenv>=16.4.5
+express>=4.21.0
+groq-sdk>=0.8.0
+nodemailer>=9.0.5
+
+# --- Required environment variables (see .env.example) ---
+# PORT=3001
+# GROQ_API_KEY=<your groq key>
+# GROQ_MODEL=openai/gpt-oss-120b
+# ADMIN_USERNAME=admin
+# ADMIN_PASSWORD=<change this>
+# SUPER_ADMIN_USERNAME=superadmin
+# SUPER_ADMIN_PASSWORD=<change this>
+# SCRAPE_TARGET_URL=https://prismatic-technologies.com
+# CORS_ORIGIN=https://prismatic-technologies.com
+# SMTP_HOST=smtp.gmail.com
+# SMTP_PORT=465
+# SMTP_SECURE=true
+# SMTP_USER=<email>
+# SMTP_PASS=<app password>
+# MAIL_FROM=Lead Chatbot <you@gmail.com>
+# ADMIN_EMAIL=info@prismatic-technologies.com
+
+# --- Multi-tenant clients ---
+# Super admin (login: SUPER_ADMIN_USERNAME / SUPER_ADMIN_PASSWORD) manages
+# all client chatbots from the Admin panel -> Clients tab. Each client gets
+# its own login (created there) and its own data folder.
+
+# --- Persistent data (must be backed up) ---
+# backend/data/  (clients.json, chatlogs.json, contacts.json, knowledge.json,
+#                 packages.json, products.json, settings.json)
+# backend/data/clients/<clientId>/  (per-client copies of the above)
