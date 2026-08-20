@@ -10,7 +10,7 @@ const clientService = require('../services/clientService');
 const contactService = require('../services/contactService');
 
 const DEFAULT_COMPANY = {
-  name: 'Lead Chatbot',
+  name: 'Leads Chatbot',
   phone: '+92 307 8881432',
   email: 'info@prismatic-technologies.com',
   locations: 'Pakistan, Saudi Arabia, USA',
@@ -205,7 +205,7 @@ router.post('/', async (req, res) => {
     }
 
     // Resolve the tenant (which client's chatbot this is). Unknown tenant
-    // ids fall back to the default prismatic chatbot.
+    // ids fall back to the default leads-chatbot chatbot.
     const requestedTenant = String(tenantId || '').trim();
     const client = await clientService.getById(requestedTenant);
     const scope = client ? client.id : clientService.DEFAULT_TENANT;

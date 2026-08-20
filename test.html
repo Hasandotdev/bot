@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lead Chatbot — Test</title>
+<title>Leads Chatbot — Test</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #1e293b; }
@@ -51,7 +51,7 @@
 <body>
 
 <header>
-  <h1>Lead Chatbot</h1>
+  <h1>Leads Chatbot</h1>
   <p>Software Development Web, Mobile, AI, DevOps, ERP</p>
 </header>
 
@@ -72,9 +72,9 @@
   </div>
 
   <div class="card">
-    <h2>About Lead Chatbot</h2>
+    <h2>About Leads Chatbot</h2>
     <p style="font-size:14px;line-height:1.6">
-      Lead Chatbot builds custom software solutions for businesses worldwide.
+      Leads Chatbot builds custom software solutions for businesses worldwide.
       We specialize in full-stack web development, cross-platform mobile apps with Flutter,
       AI/ML integration, DevOps infrastructure, and enterprise ERP systems.
       Our team is distributed across the USA and Saudi Arabia.
@@ -85,15 +85,15 @@
 
 <link rel="stylesheet" href="/widget/widget.css">
 <script>
-  // Preview any client's widget: /test?tenant=c-xxxxx (defaults to prismatic)
+  // Preview any client's widget: /test?tenant=c-xxxxx (defaults to leads-chatbot)
   var tenant = new URLSearchParams(window.location.search).get('tenant');
   if (tenant) {
-    window.PRISMATIC_TENANT_ID = tenant;
+    window.LEADS_CHATBOT_TENANT_ID = tenant;
   } else {
-    window.PRISMATIC_TENANT_ID = 'prismatic';
-    window.PRISMATIC_COMPANY = {
-      name: 'Lead Chatbot',
-      welcome: 'Lead Chatbot',
+    window.LEADS_CHATBOT_TENANT_ID = 'leads-chatbot';
+    window.LEADS_CHATBOT_COMPANY = {
+      name: 'Leads Chatbot',
+      welcome: 'Leads Chatbot',
       phone: '+92 307 8881432',
       email: 'info@prismatic-technologies.com',
       locations: 'Pakistan, Saudi Arabia, USA',
@@ -104,7 +104,7 @@
 <script>
   (function() {
     var check = setInterval(function() {
-      var w = document.getElementById('prismatic-chat-widget');
+      var w = document.getElementById('leads-chatbot-chat-widget');
       if (w) { w.classList.add('open'); clearInterval(check); }
     }, 50);
     setTimeout(function() { clearInterval(check); }, 5000);

@@ -1,5 +1,5 @@
 {
-  "name": "prismatic-chat-agent",
+  "name": "leads-chatbot",
   "version": "1.0.0",
   "description": "AI Chat Agent for prismatic-technologies.com",
   "main": "server.js",

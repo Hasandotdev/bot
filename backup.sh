@@ -4,11 +4,11 @@ set -euo pipefail
 USB_PATH="${USB_PATH:-/media/prisadmin/HASSAN}"
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 STAMP="$(date +%Y-%m-%d_%H-%M-%S)"
-BUNDLE="$USB_PATH/lead-chatbot-$STAMP.bundle"
+BUNDLE="$USB_PATH/leads-chatbot-$STAMP.bundle"
 
 cd "$REPO_DIR"
 
-echo "==> Lead Chatbot backup"
+echo "==> Leads Chatbot backup"
 
 # 1. Commit any pending changes
 if git status --porcelain | grep -q .; then
@@ -35,6 +35,6 @@ git bundle verify "$BUNDLE" >/dev/null
 echo "==> Bundle verified OK"
 
 # 5. Keep only the 5 most recent bundles on the USB
-ls -1t "$USB_PATH"/lead-chatbot-*.bundle 2>/dev/null | tail -n +6 | xargs -r rm -f
+ls -1t "$USB_PATH"/leads-chatbot-*.bundle 2>/dev/null | tail -n +6 | xargs -r rm -f
 
 echo "==> Backup complete"

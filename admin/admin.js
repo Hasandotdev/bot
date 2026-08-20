@@ -1,6 +1,6 @@
 const API_BASE = '';
-const CRED_KEY = 'prismatic-admin-credentials';
-const TENANT_KEY = 'prismatic-active-tenant';
+const CRED_KEY = 'leads-chatbot-admin-credentials';
+const TENANT_KEY = 'leads-chatbot-active-tenant';
 let credentials = (() => {
   try { return JSON.parse(sessionStorage.getItem(CRED_KEY) || 'null'); }
   catch (e) { return null; }
@@ -18,7 +18,7 @@ function isSuper() { return credentials && credentials.role === 'super'; }
 
 function getActiveTenant() {
   if (!credentials) return null;
-  if (!isSuper()) return credentials.clientId || 'prismatic';
+  if (!isSuper()) return credentials.clientId || 'leads-chatbot';
   return sessionStorage.getItem(TENANT_KEY) || null;
 }
 
@@ -33,14 +33,14 @@ function applyTheme(theme) {
 
 function toggleTheme() {
   const current = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('prismatic-admin-theme', current);
+  localStorage.setItem('leads-chatbot-admin-theme', current);
   applyTheme(current);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  applyTheme(localStorage.getItem('prismatic-admin-theme') || 'light');
+  applyTheme(localStorage.getItem('leads-chatbot-admin-theme') || 'light');
 });
-applyTheme(localStorage.getItem('prismatic-admin-theme') || 'light');
+applyTheme(localStorage.getItem('leads-chatbot-admin-theme') || 'light');
 
 function getAuthHeader() {
   if (!credentials) return {};
@@ -178,7 +178,7 @@ document.getElementById('btn-logout').addEventListener('click', () => {
 });
 document.getElementById('btn-theme').addEventListener('click', toggleTheme);
 document.getElementById('settings-theme').addEventListener('change', (e) => {
-  localStorage.setItem('prismatic-admin-theme', e.target.value);
+  localStorage.setItem('leads-chatbot-admin-theme', e.target.value);
   applyTheme(e.target.value);
 });
 
@@ -773,7 +773,7 @@ async function loadWidget() {
     return;
   }
   codeEl.value = tenantId
-    ? `<script>\n  window.PRISMATIC_TENANT_ID = '${tenantId}';\n<\/script>\n<script src="${origin}/widget/widget.js"><\/script>`
+    ? `<script>\n  window.LEADS_CHATBOT_TENANT_ID = '${tenantId}';\n<\/script>\n<script src="${origin}/widget/widget.js"><\/script>`
     : '';
 }
 

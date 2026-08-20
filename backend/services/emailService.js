@@ -27,7 +27,7 @@ const EMAIL_TEMPLATE = (session) => {
   <div style="font-family:Arial,Helvetica,sans-serif;background:#f1f5f9;padding:24px;">
     <div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;">
       <div style="background:#1e293b;color:#ffffff;padding:20px 24px;">
-        <div style="font-size:18px;font-weight:bold;">Lead Chatbot — New Conversation</div>
+        <div style="font-size:18px;font-weight:bold;">Leads Chatbot — New Conversation</div>
         <div style="font-size:12px;color:#94a3b8;margin-top:4px;">${escapeHtml(new Date(session.lastActive || Date.now()).toLocaleString())}</div>
       </div>
       <div style="padding:24px;">
@@ -43,7 +43,7 @@ const EMAIL_TEMPLATE = (session) => {
         </div>
         <div style="font-size:13px;font-weight:bold;color:#0f172a;margin-bottom:10px;">Conversation</div>
         <table style="width:100%;border-collapse:collapse;">${messages}</table>
-        <p style="font-size:11px;color:#94a3b8;margin-top:16px;">Session ID: ${escapeHtml(session.clientId)} · Sent by Lead Chatbot</p>
+        <p style="font-size:11px;color:#94a3b8;margin-top:16px;">Session ID: ${escapeHtml(session.clientId)} · Sent by Leads Chatbot</p>
       </div>
     </div>
   </div>`;
@@ -96,7 +96,7 @@ async function sendChatEmail(clientId, session) {
   const lead = session.lead || {};
   const subject = lead.name || lead.email
     ? `New chat — ${lead.name || lead.email}`
-    : 'New chat — Lead Chatbot visitor';
+    : 'New chat — Leads Chatbot visitor';
   const info = await getTransport().sendMail({
     from: process.env.MAIL_FROM || process.env.SMTP_USER,
     to,
@@ -111,7 +111,7 @@ async function sendTestEmail(to) {
   const info = await getTransport().sendMail({
     from: process.env.MAIL_FROM || process.env.SMTP_USER,
     to: to || process.env.ADMIN_EMAIL,
-    subject: 'Lead Chatbot — Test email',
+    subject: 'Leads Chatbot — Test email',
     html: '<div style="font-family:Arial;padding:24px;"><h2 style="color:#1e293b;">Test email ✅</h2><p style="color:#334155;">Email notifications are working. You will receive an email whenever a visitor has a chat conversation.</p></div>',
   });
   return { sent: true, messageId: info.messageId, to: to || process.env.ADMIN_EMAIL };

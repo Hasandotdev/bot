@@ -2,9 +2,9 @@ const prisma = require('./db');
 
 // A "service" is one thing the tenant's business sells/offers (e.g.
 // "Wedding Photography", "Tax Filing", "Website Development" — whatever
-// applies to THAT business). This replaces the old hardcoded, Lead Chatbot-only
+// applies to THAT business). This replaces the old hardcoded, Leads Chatbot-only
 // FALLBACK_SERVICES block in chat.js so every tenant gets their own sales
-// flow instead of Lead Chatbot's.
+// flow instead of Leads Chatbot's.
 //
 // Shape of a service entry:
 // {

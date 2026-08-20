@@ -5,7 +5,7 @@ const crypto = require('crypto');
 const prisma = require('../services/db');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
-const DEFAULT_TENANT = 'prismatic';
+const DEFAULT_TENANT = 'leads-chatbot';
 
 function hashPassword(password, salt) {
   return crypto.createHash('sha256').update(password + salt).digest('hex');
@@ -52,7 +52,7 @@ async function ensureClients() {
     console.log(`[clients] created Client ${c.id} (${c.username}) from clients.json`);
   }
 
-  // 2. Default "prismatic" tenant. Its identity lived in data/settings.json,
+  // 2. Default "leads-chatbot" tenant. Its identity lived in data/settings.json,
   // with the env ADMIN_USERNAME/ADMIN_PASSWORD as the login fallback.
   const settings = readJson(path.join(DATA_DIR, 'settings.json'), {});
   const existing = await prisma.client.findUnique({ where: { id: DEFAULT_TENANT } });
@@ -79,7 +79,7 @@ async function ensureClients() {
     console.log(`[clients] created Client ${DEFAULT_TENANT} (${username}) from settings.json + env`);
   }
 
-  // The old code also accepted clients.json entries for the prismatic tenant
+  // The old code also accepted clients.json entries for the leads-chatbot tenant
   // if one existed (it doesn't here), so nothing more to do.
 }
 
@@ -174,7 +174,7 @@ async function migrateTenant(tenantId, dir) {
 async function main() {
   await ensureClients();
 
-  // Default/prismatic tenant lives directly in data/
+  // Default/leads-chatbot tenant lives directly in data/
   await migrateTenant(DEFAULT_TENANT, DATA_DIR);
 
   // Per-client tenants live in data/clients/{id}/

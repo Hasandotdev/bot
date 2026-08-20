@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const prisma = require('./db');
 
-const DEFAULT_TENANT = 'prismatic';
+const DEFAULT_TENANT = 'leads-chatbot';
 
 const SUPER_ADMIN_USERNAME = process.env.SUPER_ADMIN_USERNAME || 'superadmin';
 const SUPER_ADMIN_PASSWORD = process.env.SUPER_ADMIN_PASSWORD || 'superadmin123';

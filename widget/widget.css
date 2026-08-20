@@ -1,16 +1,16 @@
 :root {
-  --prismatic-primary: #2563eb;
-  --prismatic-primary-dark: #1d4ed8;
+  --leads-chatbot-primary: #2563eb;
+  --leads-chatbot-primary-dark: #1d4ed8;
 }
 
-#prismatic-chat-btn {
+#leads-chatbot-chat-btn {
   position: fixed;
   bottom: 24px;
   right: 24px;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: var(--prismatic-primary, #2563eb);
+  background: var(--leads-chatbot-primary, #2563eb);
   color: #fff;
   border: none;
   cursor: pointer;
@@ -22,10 +22,10 @@
   justify-content: center;
   transition: transform 0.2s;
 }
-#prismatic-chat-btn:hover { transform: scale(1.08); }
-#prismatic-chat-btn svg { width: 28px; height: 28px; fill: currentColor; }
+#leads-chatbot-chat-btn:hover { transform: scale(1.08); }
+#leads-chatbot-chat-btn svg { width: 28px; height: 28px; fill: currentColor; }
 
-#prismatic-chat-widget {
+#leads-chatbot-chat-widget {
   position: fixed;
   bottom: 96px;
   right: 24px;
@@ -42,10 +42,10 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow: hidden;
 }
-#prismatic-chat-widget.open { display: flex; }
+#leads-chatbot-chat-widget.open { display: flex; }
 
-#prismatic-chat-header {
-  background: var(--prismatic-primary, #2563eb);
+#leads-chatbot-chat-header {
+  background: var(--leads-chatbot-primary, #2563eb);
   color: #fff;
   padding: 16px 20px;
   font-weight: 600;
@@ -54,7 +54,7 @@
   justify-content: space-between;
   align-items: center;
 }
-#prismatic-chat-header > span {
+#leads-chatbot-chat-header > span {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -63,7 +63,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.prismatic-logo {
+.leads-chatbot-logo {
   width: 26px;
   height: 26px;
   object-fit: contain;
@@ -72,7 +72,7 @@
   padding: 2px;
   flex-shrink: 0;
 }
-#prismatic-chat-close {
+#leads-chatbot-chat-close {
   background: none;
   border: none;
   color: #fff;
@@ -82,12 +82,12 @@
   line-height: 1;
 }
 
-.prismatic-header-actions {
+.leads-chatbot-header-actions {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-#prismatic-contact-toggle {
+#leads-chatbot-contact-toggle {
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 12px;
@@ -99,12 +99,12 @@
   font-family: inherit;
   line-height: 1.4;
 }
-#prismatic-contact-toggle:hover,
-#prismatic-contact-toggle.active {
+#leads-chatbot-contact-toggle:hover,
+#leads-chatbot-contact-toggle.active {
   background: rgba(255, 255, 255, 0.2);
   border-color: #fff;
 }
-#prismatic-clear-chat {
+#leads-chatbot-clear-chat {
   background: none;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 12px;
@@ -116,12 +116,12 @@
   font-family: inherit;
   line-height: 1.4;
 }
-#prismatic-clear-chat:hover {
+#leads-chatbot-clear-chat:hover {
   background: rgba(255, 255, 255, 0.2);
   border-color: #fff;
 }
 
-#prismatic-contact-card {
+#leads-chatbot-contact-card {
   display: none;
   background: #eff6ff;
   border-bottom: 1px solid #dbeafe;
@@ -129,21 +129,21 @@
   flex-direction: column;
   gap: 2px;
 }
-#prismatic-contact-card.open { display: flex; }
-.prismatic-contact-name {
+#leads-chatbot-contact-card.open { display: flex; }
+.leads-chatbot-contact-name {
   font-size: 13px;
   font-weight: 700;
   color: #1e293b;
 }
-.prismatic-contact-row {
+.leads-chatbot-contact-row {
   font-size: 12px;
   color: #334155;
   text-decoration: none;
   line-height: 1.5;
 }
-a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-decoration: underline; }
+a.leads-chatbot-contact-row:hover { color: var(--leads-chatbot-primary, #2563eb); text-decoration: underline; }
 
-#prismatic-lead-form {
+#leads-chatbot-lead-form {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -152,19 +152,19 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   padding: 24px 20px;
   background: #f8fafc;
 }
-.prismatic-lead-title {
+.leads-chatbot-lead-title {
   font-size: 18px;
   font-weight: 700;
   color: #1e293b;
   text-align: center;
 }
-.prismatic-lead-sub {
+.leads-chatbot-lead-sub {
   font-size: 13px;
   color: #64748b;
   text-align: center;
   margin: 0 0 6px;
 }
-#prismatic-lead-form input {
+#leads-chatbot-lead-form input {
   border: 1px solid #cbd5e1;
   border-radius: 8px;
   padding: 11px 14px;
@@ -173,15 +173,15 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   font-family: inherit;
   background: #fff;
 }
-#prismatic-lead-form input:focus { border-color: var(--prismatic-primary, #2563eb); }
-.prismatic-lead-error {
+#leads-chatbot-lead-form input:focus { border-color: var(--leads-chatbot-primary, #2563eb); }
+.leads-chatbot-lead-error {
   color: #dc2626;
   font-size: 12px;
   text-align: center;
   min-height: 16px;
 }
-#prismatic-lead-start {
-  background: var(--prismatic-primary, #2563eb);
+#leads-chatbot-lead-start {
+  background: var(--leads-chatbot-primary, #2563eb);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -191,9 +191,9 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   cursor: pointer;
   font-family: inherit;
 }
-#prismatic-lead-start:hover { background: var(--prismatic-primary-dark, #1d4ed8); }
+#leads-chatbot-lead-start:hover { background: var(--leads-chatbot-primary-dark, #1d4ed8); }
 
-#prismatic-chat-messages {
+#leads-chatbot-chat-messages {
   flex: 1;
   overflow-y: auto;
   padding: 16px;
@@ -202,7 +202,7 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   gap: 8px;
   background: #f8fafc;
 }
-.prismatic-msg {
+.leads-chatbot-msg {
   max-width: 82%;
   padding: 10px 14px;
   border-radius: 12px;
@@ -210,27 +210,27 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   line-height: 1.45;
   white-space: pre-wrap;
 }
-.prismatic-msg.bot {
+.leads-chatbot-msg.bot {
   background: #e2e8f0;
   color: #1e293b;
   align-self: flex-start;
   border-bottom-left-radius: 4px;
 }
-.prismatic-msg.user {
-  background: var(--prismatic-primary, #2563eb);
+.leads-chatbot-msg.user {
+  background: var(--leads-chatbot-primary, #2563eb);
   color: #fff;
   align-self: flex-end;
   border-bottom-right-radius: 4px;
 }
-.prismatic-msg.handoff {
+.leads-chatbot-msg.handoff {
   background: #dbeafe;
   color: #1e40af;
   align-self: flex-start;
-  border-left: 3px solid var(--prismatic-primary, #2563eb);
+  border-left: 3px solid var(--leads-chatbot-primary, #2563eb);
   border-radius: 12px;
   font-weight: 500;
 }
-.prismatic-msg.prismatic-msg-error {
+.leads-chatbot-msg.leads-chatbot-msg-error {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -239,8 +239,8 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   border: 1px solid #fecaca;
   color: #b91c1c;
 }
-.prismatic-retry-btn {
-  background: var(--prismatic-primary, #2563eb);
+.leads-chatbot-retry-btn {
+  background: var(--leads-chatbot-primary, #2563eb);
   border: none;
   border-radius: 8px;
   color: #fff;
@@ -250,18 +250,18 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   cursor: pointer;
   font-family: inherit;
 }
-.prismatic-retry-btn:hover {
-  background: var(--prismatic-primary-dark, #1d4ed8);
+.leads-chatbot-retry-btn:hover {
+  background: var(--leads-chatbot-primary-dark, #1d4ed8);
 }
 
-#prismatic-chat-input-area {
+#leads-chatbot-chat-input-area {
   display: none;
   border-top: 1px solid #e2e8f0;
   padding: 12px;
   background: #fff;
   gap: 8px;
 }
-#prismatic-chat-input {
+#leads-chatbot-chat-input {
   flex: 1;
   border: 1px solid #cbd5e1;
   border-radius: 8px;
@@ -270,9 +270,9 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   outline: none;
   font-family: inherit;
 }
-#prismatic-chat-input:focus { border-color: var(--prismatic-primary, #2563eb); }
-#prismatic-chat-send {
-  background: var(--prismatic-primary, #2563eb);
+#leads-chatbot-chat-input:focus { border-color: var(--leads-chatbot-primary, #2563eb); }
+#leads-chatbot-chat-send {
+  background: var(--leads-chatbot-primary, #2563eb);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -281,10 +281,10 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   cursor: pointer;
   font-weight: 500;
 }
-#prismatic-chat-send:hover { background: var(--prismatic-primary-dark, #1d4ed8); }
-#prismatic-chat-send:disabled { opacity: 0.5; cursor: default; }
+#leads-chatbot-chat-send:hover { background: var(--leads-chatbot-primary-dark, #1d4ed8); }
+#leads-chatbot-chat-send:disabled { opacity: 0.5; cursor: default; }
 
-.prismatic-typing {
+.leads-chatbot-typing {
   display: flex;
   gap: 4px;
   padding: 10px 14px;
@@ -292,21 +292,21 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   border-radius: 12px;
   align-self: flex-start;
 }
-.prismatic-typing span {
+.leads-chatbot-typing span {
   width: 8px;
   height: 8px;
   background: #64748b;
   border-radius: 50%;
-  animation: prismatic-bounce 1.2s infinite;
+  animation: leads-chatbot-bounce 1.2s infinite;
 }
-.prismatic-typing span:nth-child(2) { animation-delay: 0.2s; }
-.prismatic-typing span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes prismatic-bounce {
+.leads-chatbot-typing span:nth-child(2) { animation-delay: 0.2s; }
+.leads-chatbot-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes leads-chatbot-bounce {
   0%, 60%, 100% { transform: translateY(0); }
   30% { transform: translateY(-6px); }
 }
 
-.prismatic-options {
+.leads-chatbot-options {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -314,10 +314,10 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   margin-top: 4px;
   max-width: 100%;
 }
-.prismatic-option-btn {
+.leads-chatbot-option-btn {
   background: #fff;
-  border: 1.5px solid var(--prismatic-primary, #2563eb);
-  color: var(--prismatic-primary, #2563eb);
+  border: 1.5px solid var(--leads-chatbot-primary, #2563eb);
+  color: var(--leads-chatbot-primary, #2563eb);
   border-radius: 20px;
   padding: 8px 18px;
   font-size: 13px;
@@ -326,29 +326,29 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   transition: all 0.2s;
   font-family: inherit;
 }
-.prismatic-option-btn:hover {
-  background: var(--prismatic-primary, #2563eb);
+.leads-chatbot-option-btn:hover {
+  background: var(--leads-chatbot-primary, #2563eb);
   color: #fff;
 }
-.prismatic-option-btn.selected {
-  background: var(--prismatic-primary, #2563eb);
+.leads-chatbot-option-btn.selected {
+  background: var(--leads-chatbot-primary, #2563eb);
   color: #fff;
-  border-color: var(--prismatic-primary, #2563eb);
+  border-color: var(--leads-chatbot-primary, #2563eb);
 }
-.prismatic-option-btn:disabled {
+.leads-chatbot-option-btn:disabled {
   opacity: 0.4;
   cursor: default;
   background: #e2e8f0;
   border-color: #94a3b8;
   color: #94a3b8;
 }
-.prismatic-option-btn.selected:disabled {
-  background: var(--prismatic-primary-dark, #1d4ed8);
+.leads-chatbot-option-btn.selected:disabled {
+  background: var(--leads-chatbot-primary-dark, #1d4ed8);
   opacity: 0.5;
   color: #fff;
-  border-color: var(--prismatic-primary-dark, #1d4ed8);
+  border-color: var(--leads-chatbot-primary-dark, #1d4ed8);
 }
-.prismatic-option-done {
+.leads-chatbot-option-done {
   background: #16a34a;
   color: #fff;
   border: none;
@@ -362,10 +362,10 @@ a.prismatic-contact-row:hover { color: var(--prismatic-primary, #2563eb); text-d
   width: 100%;
   margin-top: 6px;
 }
-.prismatic-option-done:hover {
+.leads-chatbot-option-done:hover {
   background: #15803d;
 }
-.prismatic-option-done:disabled {
+.leads-chatbot-option-done:disabled {
   opacity: 0.4;
   cursor: default;
 }

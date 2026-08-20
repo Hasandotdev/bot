@@ -1,5 +1,5 @@
 const API_BASE = '';
-const CRED_KEY = 'prismatic-admin-credentials';
+const CRED_KEY = 'leads-chatbot-admin-credentials';
 
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
@@ -7,7 +7,7 @@ function applyTheme(theme) {
   if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
 }
 
-applyTheme(localStorage.getItem('prismatic-admin-theme') || 'light');
+applyTheme(localStorage.getItem('leads-chatbot-admin-theme') || 'light');
 
 const storedCreds = (() => {
   try { return JSON.parse(sessionStorage.getItem(CRED_KEY) || 'null'); }
@@ -26,7 +26,7 @@ const btn = document.getElementById('btn-login');
 
 document.getElementById('btn-theme').addEventListener('click', () => {
   const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('prismatic-admin-theme', next);
+  localStorage.setItem('leads-chatbot-admin-theme', next);
   applyTheme(next);
 });
 

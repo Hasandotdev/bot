@@ -96,7 +96,7 @@ process.on('uncaughtException', (err) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Lead Chatbot running on port ${PORT}`);
+  console.log(`Leads Chatbot running on port ${PORT}`);
   console.log(`Health: http://localhost:${PORT}/api/health`);
   console.log(`Admin:  http://localhost:${PORT}/admin`);
   console.log(`Widget: http://localhost:${PORT}/widget/widget.js`);
